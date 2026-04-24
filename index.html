@@ -1,17 +1,21 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="refresh" content="0; url=./plane.html" />
-  <title>星际肉鸽打飞机</title>
-  <style>
-    html,body{margin:0;width:100%;height:100%;display:grid;place-items:center;background:#050816;color:#fff;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-    a{color:#63dfff}
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>肉鸽打飞机 - 无宝箱稳定版</title>
+  <link rel="stylesheet" href="./styles/game.css" />
 </head>
 <body>
-  <p>正在进入游戏... <a href="./plane.html">如果没有自动跳转，请点击这里</a></p>
-  <script>location.replace('./plane.html')</script>
+<canvas id="game"></canvas>
+<div id="hud" class="hidden"><div id="hudTop"><div id="leftInfo"></div><div id="rightInfo"></div></div><div class="barWrap"><div id="hpBar" class="bar"></div></div><div class="barWrap"><div id="expBar" class="bar"></div></div><div id="bossHud" class="hidden"><div id="bossText">BOSS</div><div id="bossWrap"><div id="bossBar"></div></div></div></div>
+<div id="bottomControls" class="hidden"><div id="tip">手机：手指按哪，飞机去哪</div><div id="rightButtons"><div id="skillBtns"></div><div id="menuBtns"><button id="upgradeBtn" class="floatBtn upgradeQueueBtn hidden">升级</button><button id="settingsBtn" class="floatBtn">设置</button><button id="bagBtn" class="floatBtn">背包</button><button id="shopBtn" class="floatBtn">商店</button></div></div></div>
+<div id="startPanel" class="panel"><div class="card"><h1>星际肉鸽打飞机</h1><p>无宝箱稳定版：保留主武器改装、稀有度、背包切换、商店、Boss、回血护盾主动和自动冲击波。</p><p>手机端：手指按住哪里，飞机就向哪里移动。电脑端：WASD / 方向键移动。</p><button id="startBtn" class="btn">开始游戏</button></div></div>
+<div id="upgradePanel" class="panel hidden"><div class="card"><h2>升级！选择一个强化</h2><div id="upgradeList"></div></div></div>
+<div id="inventoryPanel" class="panel hidden"><div class="card"><h2>背包 / 装备 / 技能</h2><h3>主动技能</h3><div id="skillList"></div><h3>主武器改装</h3><div id="weaponModList"></div><h3>装备槽</h3><div id="equipSlots"></div><h3>装备背包</h3><div id="inventoryList"></div><button id="closeBagBtn" class="btn secondary">继续战斗</button></div></div>
+<div id="shopPanel" class="panel hidden"><div class="card"><h2>金币商店</h2><p id="shopCoinText"></p><div id="shopList"></div><button id="refreshShopBtn" class="btn secondary">刷新商品 15 金币</button><button id="closeShopBtn" class="btn">继续战斗</button></div></div>
+<div id="settingsPanel" class="panel hidden"><div class="card"><h2>设置</h2><div class="settingCard"><div class="settingRow"><div class="settingLabel">音效</div><button id="toggleSoundBtn" class="floatBtn">音效 开</button></div><div class="settingDesc">控制所有射击、爆炸和界面音效。</div></div><div class="settingCard"><div class="settingRow"><div class="settingLabel">游戏速度</div><div id="speedValue" class="settingValue">1.0x</div></div><div class="settingDesc">默认 1.0 倍。拉高后，敌人、子弹、冷却和刷新都会一起加快。</div><input id="speedSlider" type="range" min="1" max="2.5" step="0.1" value="1" /></div><div class="settingCard"><div class="settingRow"><div class="settingLabel">升级菜单设置</div><div id="upgradeModeValue" class="settingValue">自动</div></div><div class="settingDesc">自动模式会像现在一样到点就暂停并弹出。手动模式会把升级次数累计到侧边升级按钮里，想点的时候再点。</div><div class="settingChoices"><button id="upgradeModeAutoBtn" class="floatBtn settingChoice">自动弹出</button><button id="upgradeModeManualBtn" class="floatBtn settingChoice">手动累计</button></div></div><button id="closeSettingsBtn" class="btn">继续战斗</button></div></div>
+<div id="gameOverPanel" class="panel hidden"><div class="card"><h2>游戏结束</h2><p id="finalStats"></p><button id="restartBtn" class="btn">再来一局</button></div></div>
+<script src="./scripts/game.js"></script>
 </body>
 </html>
